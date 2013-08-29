@@ -35,21 +35,42 @@ Feature
 
 - updates can be applied atomically to individual documents
 
+- capped collection
+
+  fixed size, designed for logging storage; no _id index by default
+
+  can't delete individual documents
+
 - Databases and collections are created only when documents are first inserted
 
   use 'strict mode' to disable this feature
 
+- no joins
+
+
+Limitations
+===========
+
+- BSON documents limited to 16M in size
 
 ObjectID
 ========
 
 
-Index
-=====
+BSON
+====
+all documents are stored on disk as BSON, and all queries and commands are specified using BSON documents
+
+All documents must be serialized to BSON before being sent to mongod, which is done by driver
+
+Indexing
+========
 
 Save as B-tree in mysql, so working with indexes in MySQL can expect similar behavior in MongoDB.
 
 > db.numbers.find({num:{"$gt":1, "$lt":200000}}).explain()
+
+If you have a unique index on slug, you’ll need to insert your product document using safe mode so that you’ll know if the insert fails. That way, you can retry with a different slug if necessary. 
 
 
 Write
@@ -61,6 +82,12 @@ This forces a response, ensuring that the write has been received by the server 
 Safe mode is configurable; it can also be used to block until a write has been replicated to some number of servers.
 
 In MongoDB v2.0, journaling is enabled by default. With journaling, every write is committed to an append-only log. 
+
+
+Preallocation
+=============
+
+to ensure that as much data as possible will be stored contiguously.
 
 
 mmap
