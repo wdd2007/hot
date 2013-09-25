@@ -30,3 +30,12 @@ tsdb
 
   value type can only be float or int
 
+
+Usage
+=====
+
+::
+
+    metricName timestamp value [tag k/v]
+    ----------           -----
+    mkmetric             int64 or double
