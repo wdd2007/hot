@@ -39,3 +39,12 @@ Usage
     metricName timestamp value [tag k/v]
     ----------           -----
     mkmetric             int64 or double
+
+
+Enhancement
+===========
+
+graph
+-----
+
+src/graph/Plot.java, which generate gnuplot script on time
