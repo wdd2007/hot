@@ -63,3 +63,47 @@ As the number of connection increases , these buffers will be reduced [at most t
             net.ipv4.tcp_wmem = 4096 16384 4194304
 
             net.ipv4.tcp_rmem = 4096 87380 4194304
+
+
+tcp handshake
+=============
+
+::
+
+
+        client                  server
+          |                       |
+          | syn(n)                | r u ready?
+          |---------------------->|
+          |                       |
+          | SYN_SENT              | 
+          |                       |
+          |     syn  ack=n+1      | i'm ready, r u read?
+          |<----------------------|
+          |                       | SYN_RCVD (potential syn flood, half-open connection
+          |                       |           server maintains an unconnected queue)
+          |                       |
+          | ack                   | i'm ready
+          |---------------------->|
+          |                       |
+          | ESTABLISHED           | ESTABLISHED
+          |                       |
+
+        client                  server
+          |                       |
+          | fin seq(n)            | i'll close
+          |---------------------->|
+          | FIN_WAIT_1            |
+          |                       |
+          |          ack=n+1      | ok, you close
+          |<----------------------|
+          | FIN_WAIT_2            | CLOSE_WAIT
+          |                       |
+          |             fin       | i'll close
+          |<----------------------|
+          |                       | LAST_ACK
+          |                       |
+          | ack                   | ok, you close
+          |---------------------->|
+          | TIME_WAIT             | CLOSED
+          |                       |
