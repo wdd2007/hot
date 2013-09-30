@@ -94,3 +94,22 @@ mmap
 ====
 
 
+
+php extention 1.2.0
+===================
+
+::
+
+        $uid = 1;
+        $u = new UserAccountModel($uid);
+        $u->getAccount();
+
+
+        c->s    3 way tcp handshake
+        c->s    admin.$cmd(isMaster)
+        c<-s    reply, ok
+        c->s    admin.$cmd(ping)
+        c<-s    ok
+        c->s    findOne(royal_1.user, guid=1)
+        c<-s    reply
+        c->s    FIN and 4 way closehand
