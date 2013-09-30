@@ -107,7 +107,7 @@ php extention 1.2.0
 
         c->s    3 way tcp handshake
         c->s    admin.$cmd(isMaster)
-        c<-s    reply, ok
+        c<-s    reply, maxBsonObjectSize maxMessageSizeBytes localTime
         c->s    admin.$cmd(ping)
         c<-s    ok
         c->s    findOne(royal_1.user, guid=1)
