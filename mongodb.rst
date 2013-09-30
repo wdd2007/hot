@@ -113,3 +113,10 @@ php extention 1.2.0
         c->s    findOne(royal_1.user, guid=1)
         c<-s    reply
         c->s    FIN and 4 way closehand
+
+
+    php_mongo_get_reply
+        get_header
+
+    connectUtil
+        mongo_util_pool_get
