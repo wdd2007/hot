@@ -9,6 +9,20 @@ mongodb internal
 .. contents:: Table Of Contents
 .. section-numbering::
 
+Flushing
+========
+
+journal
+-------
+
+100ms
+
+background
+----------
+
+msync every 60s
+
+customize with syncDelay option
 
 Scenario
 ========
