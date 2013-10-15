@@ -32,12 +32,16 @@ tsdb
 - column qualifier
 
 ::
+  
+  time delta in seconds offset base timestamp
 
   t:[time delta] [value type] [reserved]
     ------------ ------------ ----------
     12b          1b           3b
 
   value type can only be float or int
+
+  value is 8 bytes
 
 
 Usage
