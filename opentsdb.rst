@@ -76,6 +76,25 @@ tsdb-uid
     \x00\x00\x06                column=name:tagk, timestamp=1380113861026, value=method
     \x00\x00\x06                column=name:tagv, timestamp=1380113860923, value=gnuplot
     
+
+Limitations
+===========
+
+You can see from tsdb-uid, each row key is 3 bytes(24bit). Each metics/tagk/tagv have their 
+own UID spaces.
+
+- metrics count
+
+  2 ** 24 = 16,777,216
+
+- tag names
+
+  2 ** 24 = 16,777,216
+
+- tag values
+
+  2 ** 24 = 16,777,216
+
 Usage
 =====
 
