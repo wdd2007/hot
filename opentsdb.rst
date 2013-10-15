@@ -98,6 +98,15 @@ own UID spaces.
 Usage
 =====
 
+Metrics need to be registered before you can start storing data points for them.
+
+New tags are automatically registered whenever they're used for the first time.
+
+::
+
+    ./tsdb mkmetric mysql.bytes_received mysql.bytes_sent
+
+
 ::
 
     metricName timestamp value [tag k/v]
