@@ -38,6 +38,9 @@ tsdb
   t:[time delta] [value type] [reserved]
     ------------ ------------ ----------
     12b          1b           3b
+     |            |            |
+      -------------------------
+            16b
 
   value type can only be float or int
 
