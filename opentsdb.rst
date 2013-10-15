@@ -20,6 +20,8 @@ tsdb
 
 ::
 
+  base timestamp = 60m
+
   [metrics id] [base timestamp] [tagid tagvalue] [tagid tagvalue...]
   ------------ ---------------- ------ --------- -------------------
   24b          32b              24b    24b
