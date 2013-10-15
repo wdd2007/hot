@@ -23,6 +23,9 @@ tsdb
   [metrics id] [base timestamp] [tagid tagvalue] [tagid tagvalue...]
   ------------ ---------------- ------ --------- -------------------
   24b          32b              24b    24b
+   |                                    |
+    ------------------------------------
+            104b
 
 - column qualifier
 
