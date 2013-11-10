@@ -64,6 +64,11 @@ send返回，只是拷贝到TCP协议栈里的send buffer
 TCP应答采用的是带时延的ACK， 比如收到数据后先看有没有应用层数据，有的话就一起发出去
 没有就等待200ms，仍然没有应用层数据，就单独发ACK
 
+To get maximal throughput it is critical to use optimal TCP send and receive socket buffer sizes for the link you are using. If the buffers are too small, the TCP congestion window will never fully open up. If the receiver buffers are too large, TCP flow control breaks and the sender can overrun the receiver, which will cause the TCP window to shut down. This is likely to happen if the sending host is faster than the receiving host. 
+
+optimal buffer size = bandwidth * RTT
+
+但从Linux2.6之后，出现了TCP autotuning，就不需要手工设置send and recv buffer了
 
     建立握手需要 1.5 RTT
 
@@ -81,3 +86,29 @@ UDP
 即使在同一台机器上运行C/S，UDP也会发生丢包，这是因为缓冲区空间不足造成的
 
 UDP的报文长度最大可以达到64 kb，但是当报文过大时，稳定性会大大减弱。这是因为当报文过大时会被分割，使得每个分割块（翻译可能有误差，原文是fragmentation）的长度小于MTU，然后分别发送，并在接收方重新组合（reassemble），但是如果其中一个报文丢失，那么其他已收到的报文都无法返回给程序，也就无法得到完整的数据了。 
+
+Tuning
+======
+
+net.core.r(w)mem_max = 127K
+--------------------------
+
+Max OS receive/send buffer size for all types of connections.
+
+net.core.r(w)mem_default = 126K
+-------------------------------
+
+Default OS receive/send buffer size for all types of connections.
+
+TCP Autotuning
+--------------
+
+net.ipv4.tcp_r(w)mem = 4K 85K 4M
+#################################
+
+- 每个socket的最小缓冲区
+
+- 每个socket的默认缓冲区
+
+- 每个socket的最大缓冲区
+
