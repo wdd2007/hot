@@ -134,3 +134,11 @@ php extention 1.2.0
 
     connectUtil
         mongo_util_pool_get
+
+
+Election
+========
+
+It may take 10-30 seconds for the members of a replica set to declare a primary inaccessible. This triggers an election. During the election, the cluster is unavailable for writes.
+
+The election itself may take another 10-30 seconds.
