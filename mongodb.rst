@@ -9,6 +9,14 @@ mongodb internal
 .. contents:: Table Of Contents
 .. section-numbering::
 
+used tcmalloc
+
+BackgroundJob starting: ClientCursorMonitor
+BackgroundJob starting: TTLMonitor
+BackgroundJob starting: PeriodicTask::Runner
+
+
+
 Flushing
 ========
 

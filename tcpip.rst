@@ -82,6 +82,8 @@ optimal buffer size = bandwidth * RTT
 
 TCP无法将丢失的连接立即通知应用程序，如果不发送数据，应用程序可能永远都无法发现连接的丢失
 
+SO_REUSEADDR是因为TIME_WAIT 2MSL
+
 UDP
 ===
 即使在同一台机器上运行C/S，UDP也会发生丢包，这是因为缓冲区空间不足造成的
