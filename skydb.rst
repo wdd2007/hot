@@ -63,6 +63,13 @@ handlers
 
 - table handler
 
+  ::
+
+        curl -X GET http://localhost:8585/tables
+        curl -X GET http://localhost:8585/tables/users
+        curl -X POST http://localhost:8585/tables -d '{"name":"users"}'
+        curl -X DELETE http://localhost:8585/tables/users
+
 - property handler
 
 - event handler
