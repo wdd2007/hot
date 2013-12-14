@@ -1,9 +1,5 @@
 =========================
-<<<<<<< HEAD
-skydb behavior db
-=======
 skydb(behavior database)
->>>>>>> abc758c52716d8f4dcb5f401cd3428c94ad3493f
 =========================
 
 :Author: Gao Peng <funky.gao@gmail.com>
@@ -13,22 +9,40 @@ skydb(behavior database)
 .. contents:: Table Of Contents
 .. section-numbering::
 
-<<<<<<< HEAD
 
-Terms
-============
-
-actions + state over time.
-
-- actions
-
-- state
-=======
 Overview
 ========
 
+actions + state over time.
+
+Each user would have a hash in Sky.
+
+storage
+-------
+
+::
+
+    {
+        user: {
+            gender: F
+            birth: 1986-10
+            actions: {
+                signup: {
+                }
+
+                checkout: {
+                    1387030582: {
+                        purchase_amount: 60
+                        currency: "USD"
+                    }
+                }
+            }
+        }
+    }
+
+
 terms
-#####
+-----
 
 - table
 
@@ -36,7 +50,7 @@ terms
 
 
 server
-######
+------
 
 ::
 
@@ -45,7 +59,7 @@ server
 
 
 handlers
-########
+--------
 
 - table handler
 
@@ -56,5 +70,3 @@ handlers
 - query handler
 
 
-
->>>>>>> abc758c52716d8f4dcb5f401cd3428c94ad3493f
