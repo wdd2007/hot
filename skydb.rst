@@ -24,8 +24,11 @@ storage
 
     {
         user: {
-            gender: F
+            // permanent properties
+            gender: F   
             birth: 1986-10
+
+            // transient properties because their key is time based
             actions: {
                 signup: {
                 }
@@ -39,6 +42,30 @@ storage
             }
         }
     }
+
+
+data type
+---------
+
+property
+########
+
+- transient
+
+- permanent  
+
+data
+####
+
+- string
+
+- integer
+
+- float
+
+- boolean
+
+- factor
 
 
 terms
@@ -106,3 +133,8 @@ handlers
 
         curl -X GET http://localhost:8585/tables/users/stats
 
+- misc
+
+  ::
+
+        curl http://localhost:8585/ping
