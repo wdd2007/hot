@@ -115,3 +115,30 @@ net.ipv4.tcp_r(w)mem = 4K 85K 4M
 
 - 每个socket的最大缓冲区
 
+
+tcp seq
+#######
+
+::
+
+        client                  server
+        ------                  ------
+                syn(C) ack(0)
+                ---------->
+
+                syn(S) ack(C+1)
+                <---------- 
+                
+                syn(C+1) ack(S+1)
+                ----------->
+
+                3-way handshake done! and ready for data transfer
+
+                push(syn(C+1:C+1+L) ack(S+1) segmentLen(L))
+                ----------->
+
+                syn(S+1) ack(C+1+L) segmentLen(0)
+                <-----------
+
+                之后，c->s里的ack值一直是S+1，而s->c里的syn也一直是S+1，syn/ack的值不再执行加一操作
+                因为建立握手时的SYN要占用一个序列号

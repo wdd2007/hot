@@ -20,6 +20,8 @@ Each user would have a hash in Sky.
 storage
 -------
 
+Each server has {numCPU} servlets.
+
 ::
 
     {
@@ -43,6 +45,27 @@ storage
         }
     }
 
+
+                                    server
+                                      |
+                         -----------------------
+                        |                       |
+        -----------------------            ---------------     
+       |           |           |          |       |       |
+    servlet     servlet     servlet     table   table   table - [property]
+                   | 
+                   | 1
+                   |
+                leveldb
+
+
+event
+table
+db
+property
+objectId
+
+/tables/{name}/objects/{objectId}/events/{timestamp}
 
 data type
 ---------

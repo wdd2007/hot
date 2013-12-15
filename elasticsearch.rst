@@ -61,4 +61,7 @@ shards and replicas
 Query
 =====
 
+::
 
+    curl -XPOST localhost:9200/kibana-int/dashboard/_search?pretty=1 -d '{"query":{"query_string":{"query":"title:*"}},"size":20}'
+        => 96KB, took 10253 ~ 34235ms
