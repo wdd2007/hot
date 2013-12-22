@@ -58,6 +58,10 @@ Each server has {numCPU} servlets.
                    |
                 leveldb
 
+                        hash mod
+    tableName, objectId --------> servlet
+
+    GetObjectContext(tableName string, objectId string) (*Table, *Servlet)
 
 event
 table
@@ -66,6 +70,20 @@ property
 objectId
 
 /tables/{name}/objects/{objectId}/events/{timestamp}
+
+event schema
+------------
+
+::
+
+        key:    msgpack([]string{tableName, objectId}) 
+        value:  [
+            {timestamp:x, data:y} // state
+
+            {timestamp:x, data:y} // events
+            {timestamp:x, data:y} // events
+            ...
+        ]
 
 data type
 ---------
