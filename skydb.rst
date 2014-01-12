@@ -17,6 +17,24 @@ actions + state over time.
 
 Each user would have a hash in Sky.
 
+SQL analyzes state
+    who, when, where, what
+
+How do we understand actions?
+    how: what happened during an action
+    why: what came before an action
+
+performance
+-----------
+
+*   insert
+    
+    said to be 45 million events per second on a single core
+
+*   query
+
+    fast enough to process the millions (or billions) of events that organizations see generated every day
+
 storage
 -------
 
