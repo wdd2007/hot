@@ -142,3 +142,19 @@ tcp seq
 
                 之后，c->s里的ack值一直是S+1，而s->c里的syn也一直是S+1，syn/ack的值不再执行加一操作
                 因为建立握手时的SYN要占用一个序列号
+
+
+
+orphaned socket
+###############
+
+::
+
+
+        tcp_close or tcp_disconnect
+            if (old_state == TCP_LISTEN) 
+                foreach s = socket.accept_queue {
+                    tcp_disconnect(s, nonblock)
+                    s.set_flag(SOCK_DEAD)
+                    atomic_inc(&tcp_orphan_count);
+                }
