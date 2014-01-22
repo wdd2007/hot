@@ -14,6 +14,8 @@ Features
 
 - namespace
 
+  Group
+
 - easy deloyment
 
   both client and server(peer)
@@ -24,4 +26,9 @@ Features
 
 - auto handles 'super hot' items
 
-  by auto mirror
+  auto mirror(duplicate entry)
+
+  - The MainCache is the cache for items that this peer is the owner for
+
+  - The HotCache is the cache for items that seem popular enough to replicate to 
+    this node, even though it's not the owner
