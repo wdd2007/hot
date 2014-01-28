@@ -9,6 +9,20 @@ Thrift
 .. contents:: Table Of Contents
 .. section-numbering::
 
+Stack
+=====
+
+::
+
+
+        Server(single threaded, event driver, etc)
+           |
+        Processor(generated)
+           |
+        Protocol(json, compact, binary, etc)
+           |
+        Transport(tcp, http, etc)
+
 Types
 =====
 
@@ -20,6 +34,10 @@ supports c style typedef
 
 
 - bool
+
+- binary
+
+  []byte
 
 - byte
 
@@ -59,10 +77,16 @@ supports c style typedef
 
 - struct
 
+  - can be nested
+
+  - can't inherit
+
 - exception
+
+- const
 
 
 Services
 ========
 
-
+May extend other service.
