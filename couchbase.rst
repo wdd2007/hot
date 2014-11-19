@@ -9,6 +9,51 @@ couchbase
 Server
 ======
 
+Architecture
+############
+
+Each server node contains
+
+- TAP replicator
+
+  responsible to handle vBucket migration as well as vBucket replication from active server to replica server.
+
+- data server daemon
+
+  - written in c/c++
+
+  - handle get/set/delete request from client
+
+- mgmt server daemon
+
+  - written in erlang
+
+  - handle the query traffic from client
+
+  - manage the configuration and co-ordinate the other member nodes in the cluster
+    - heartbeat
+      A watchdog process periodically communicates with all member nodes within the cluster
+
+    - process monitor
+      Monitors execution of the local data manager, restarting failed processes and provide status info to heartbeat module
+
+    - configuration manager
+      Each node shares a cluster-wide configuration: vBucket map. This manager pull this config from other member
+      nodes at bootup time.
+      Within a cluster, one node's mgmt server will be elected as the leader.
+      When a machine in the cluster has crashed, the leader will detect that and notify member machines in the cluster that all vBuckets hosted in the crashed machine is dead.  After getting this signal, machines hosting the corresponding vBucket replica will set the vBucket status as “active”.  The vBucket/server map is updated and eventually propagated to the client lib.  
+      If the leader node crashes, a new leader will be elected from surviving members in the cluster.
+      The crashed machine, after reboot can rejoin the cluster.  At this moment, all the data it stores previously will be completely discard and the machine will be treated as a brand new empty machine.
+
+
+Storage
+#######
+
+One file per vBucket.
+
+Data are written to this file in append-only mode.
+
+
 Metadata
 ########
 
@@ -34,8 +79,24 @@ Smart client.
     curl http://localhost:8091/pools/default/buckets/default
 
 
+Replica
+=======
+
+Currently Couchbase supports one active vBucket zero or more standby replicas hosted in other machines.  
+
+Curremtly the standby server are idle and not serving any client request.  
+
+In future version of Couchbase, the standby replica will be able to serve read request.
+
 Rebalance
 =========
+
+The actual data transfer happens directly between the origination node to the destination node.
+
+When new machines are added into the clusters, all existing machines will migrate some portion of its vBucket to the new machines.  
+
+There is no single bottleneck in the cluster.
+
 
 ::
 
